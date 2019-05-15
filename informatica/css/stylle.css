@@ -1,0 +1,720 @@
+body {
+    background: #fff !important;
+    overflow-x: visible;
+    overflow-y: scroll;
+    width: 100%;
+    height:100% !important;
+    font-family: Arial Narrow, Arial !important;
+}
+
+header {
+    clear: right;
+    width: 100% !important;
+    height: auto;
+    top: 2px;
+    align-content: center;
+    padding: 0 8%;
+}
+
+.banner{
+    width: 100%;
+    height: auto;
+}
+
+/*Para o menu de navegação responsivo*/
+
+.icon {
+  display: none;
+}
+
+.icon:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 920px) {
+  nav a:not(:first-child) {display: none;}
+  nav span:not(:first-child) {display: none;}
+  nav div:not(:first-child) {display: none;}
+  nav a.icon {
+    float: right;
+    display: block;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  nav.responsive {position: relative; height: auto;}
+  nav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: white;
+  }
+  nav.responsive a{
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  nav.responsive div{
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+/* Fim menu responsivo*/
+
+/*Novo menu navegação*/
+nav {
+    overflow: visible;
+    color: white;
+    background-color: #016eb3;  /*azul*/
+    width: auto;
+    height: 53px;
+    text-transform: uppercase;
+}
+
+nav span{
+    color: #f8c92e;
+    float: left;
+    font-size: 20px;
+    margin-top: 13px;
+}
+
+nav a{
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.cairMenu{
+    float: left;
+}
+
+nav a:hover, .cairMenu:hover{
+    background-color: #f8c92e;  /*amarelo*/
+    color: black;
+    text-decoration: none;
+}
+
+nav a:focus{color: white;}
+
+.cairMenu:hover .menuCaido{
+    display: block;
+    position: absolute;
+}
+
+.tituloMenu{
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    color: white;
+    background-color: #016eb3;  /*azul*/
+    border: none;
+    text-transform: uppercase;
+}
+
+.seta{
+    color: white;
+    float: right;
+}
+
+.tituloMenu:hover{
+    color: black;
+    background-color: #f8c92e;  /*amarelo*/
+}
+
+.tituloMenu:hover .seta{
+    color: black;
+}
+
+.menuCaido{
+    list-style: inside none;
+    display: none;
+    text-align: left;
+}
+
+.menuCaidoItem{
+    background-color: #f8c92e !important;  /*amarelo*/
+    color: black !important;
+    width: 320px;
+    padding: 5px 10px;
+    font-size: 17px;
+    text-decoration: none;
+    margin-left: -40px;
+}
+
+.menuCaidoItem:hover{
+    background-color: #006eb4 !important;
+    color: white !important;
+    cursor: default;
+}
+
+#cairSubMenu:hover{
+    background-color: #006eb4 !important;
+    color: white !important;
+}
+
+.subMenuCaido{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    overflow-x: visible;
+    overflow-y: scroll;
+    max-height: 40vh;
+    background-color: #f8c92e;  /*amarelo*/
+    color: black;
+    float: left;
+    margin-top: -40px;
+    left: 100%;
+    width: 350px;
+    list-style-type: none;
+}
+
+#cairSubMenu:hover .subMenuCaido{
+    display: block;
+}
+
+/*Barra de rolagem (exceto pra Firefox e IE)*/
+/* width */
+.subMenuCaido::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+.subMenuCaido::-webkit-scrollbar-track{
+    background: #f8c92e; 
+}
+ 
+/* Handle */
+.subMenuCaido::-webkit-scrollbar-thumb {
+    background: #128ed3; 
+}
+
+/* Handle on hover */
+.subMenuCaido::-webkit-scrollbar-thumb:hover {
+    background: #016eb3; 
+}
+/*Fim barra de rolagem*/
+
+/*
+AMARELO : #f8c92e
+AZUL : #006eb4
+*/
+/*fim novo menu*/
+
+footer{
+    bottom: 0;
+    top: 100%!important;
+    /*height: auto;*/
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    height: 87px;
+}
+
+@media screen and (max-width: 600px) {
+    footer {
+        bottom: -25vh;
+        position: relative;
+    }
+}
+
+/*@media screen and (min-width: 1000px) {
+    footer {
+        bottom: -11vh;
+        position: relative;
+    }
+}*/
+
+.floater01 {
+    position: inherit;
+    width: 58.3333333%;
+    height: 100%;
+    background: #ffcc29;
+    float: left;
+    padding: 20px;
+     
+}
+
+.floater02{
+    position: inherit;
+    width: 41.66666667%;
+    height: 100%;
+    background: #006eb4;
+    float: right;
+}
+
+.textoRodape{
+    clear: both;
+    color: #016eb3;  /*azul*/
+}
+
+.contato{
+    margin: 10px;
+    color: #016eb3;  /*azul*/
+    height: 35px;
+    width: 215px;
+    font-size: 25px;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.contato i{
+    float: left;
+    border-radius: 50%;
+    background-color: #f8c92e;  /*amarelo*/
+    width: 35px;
+    height: 35px;
+    padding: 5px 0 0 0;
+}
+
+.contato span{
+    text-align: center;
+    color: #016eb3;  /*azul*/
+    padding: 1px 5px 0 3px;
+}
+
+.slideShow{
+    background-color: white;
+    border: #cccccc 1px solid;
+    float: left;
+    width: 80%;
+    height: auto;
+    margin: 1.5% 1% 1.5% 0;
+}
+
+.slide{
+    display: none;
+    background: white;
+    text-align: center;
+}
+.coluna{
+    float: left;
+    width: 50%;
+    padding: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+    .coluna {
+        width: 100%;
+        margin-top: 0;
+    }
+    .slideShow, .acessoRapido{
+        width: 100% !important;
+    }
+    
+    .acessoRapidoIcones article{
+        font-size: 40px !important;
+    }
+}
+
+.slide h2{
+    font-size: 24px;
+    clear: both;
+    color: #016eb3;
+    padding: 5px;
+}
+
+.slide p{
+    font-size: 20px;
+    color: black;
+    padding: 5px;
+    margin: 0 !important;
+}
+
+.slide img{
+    height: 350px;
+    width: 100%;
+}
+
+.passaSlides{
+    float: left;
+    width: 100%;
+    height: auto;
+    background-color: #016eb3;  /*azul*/
+}
+
+.slideAnterior, .slideProximo{
+    font-size: 34px;
+    background-color: #f8c92e;
+    color: white;
+    padding: 2px;
+    float: left;
+    top: 0 !important;
+}
+
+.slideProximo{
+    float: right;
+}
+
+.slideAnterior:hover, .slideProximo:hover{
+    text-decoration: none;
+    color: white;
+}
+
+/* Animação de transição */
+.slideShow article{
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1s;
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@keyframes fade{
+    from {opacity: 0.4;} 
+    to {opacity: 1;}
+}
+
+@-webkit-keyframes fade {
+    from {opacity: 0.4;} 
+    to {opacity: 1;}
+}
+/* Fim animação slide*/
+
+.acessoRapido{
+    float: left;
+    width: 18.5%;
+    min-width: 150px;
+    height: 20%;
+    color: white;
+    margin: 1.5% 0 !important;
+}
+.acessoRapido h3{
+    padding: 5px;
+    background-color: #006eb4;
+    margin-top: 0 !important;
+}
+
+.acessoRapidoIcones{
+    text-align: center;
+    background-color: #006eb4;
+    overflow-y: auto;
+    
+}
+
+.acessoRapidoIcones article{
+    cursor: pointer;
+    text-align: center !important;
+    font-size: 20px;
+}
+
+.acessoRapidoIcones article p{margin: 0;}
+.acessoRapidoIcones article h6{
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+.acessoRapidoIcones article:hover{
+    background-color: white;
+    color: #006eb4;
+}
+
+.img-siat{
+    background: url(../Imgs/fotos/siat.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+
+/*notícias*/
+.noticia{
+    width: 79%;
+    height: auto;
+    float: left;
+}
+
+.noticia h2{
+    color: #016eb3;  /*azul*/
+    text-align: justify;
+}
+
+.noticia figure{
+    float: left;
+    margin: 0 2% 2% 0;
+    width: 403px;
+}
+
+.noticia figcaption{
+    font-family: "Arial Black", Gadget, serif;
+    font-size: 12px;
+}
+
+.noticia p{
+    font-family: "Arial", Gadget, sans-serif;
+    font-size: 16px;
+}
+/*Fim notícias*/
+.tituloNoticias{
+    width: 100%;
+    height: 40px;
+    background-color: #016eb3;
+    color: white;
+    font-size: 35px; 
+}
+
+.tituloNoticias canvas{
+    background-color: #f8c92e;
+    height: 40px;
+    width: 15px;
+}
+
+.previewNoticia{
+    border: solid #ccc 1px;
+    color: #333;
+    margin: 1%;
+    padding: 5px;
+}
+
+.previewNoticia:hover{background-color: #eee;}
+
+.previewNoticia h4{
+    color: #016eb3;
+}
+
+.barraNoticias{
+    width: 19%;
+    height: auto;
+    background-color: #016eb3;
+    color: white;
+    margin: 2% 0 1% 2%;
+    float: left;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.barraNoticias h6{
+    margin: 15px;
+    font-size: 15px;
+}
+
+.barraNoticias canvas{
+    background-color: white;
+    width: 40%;
+    height: 1px;
+    margin-left: 30%;
+}
+
+.barraNoticias a{
+    color: white !important;
+    font-size: 15px;
+    margin: 15px;
+}
+
+.objetivo{
+    background: #eee;
+}
+
+.tituloObjetivo {
+    color: #016eb3;  /*azul*/
+    font-size: 40px;
+    font-weight: bold;
+    padding: 5px 0;
+    font-family: "Arial Narrow", Gadget, sans-serif;
+    text-align: center;
+}
+
+.textoObjetivo{
+    width: 90%;
+    margin: 5px 5%;
+    padding: 0 8%;
+    font-size: 15px;
+    font-weight: normal;
+    color: black;
+    text-align: justify;
+}
+
+/*Experimental*/
+.equipe{
+    height: 1300px;
+    padding: 0 5% 2% 5%;
+    background-color: #eee;
+}
+
+.tituloEquipe{
+   color: #016eb3;  /*azul*/
+   font-size: 50px;
+   font-weight: bold;
+   text-align: center;
+   font-family: "Arial Narrow", Gadget, sans-serif;
+}
+
+.fotoEquipe{
+    padding: 0 8%;
+}
+
+.fotoEquipe img{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);}
+
+.funcionario{
+    float: left;
+    width: 200px;
+    height: auto;
+    margin: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 650px) {
+  .funcionario {
+    width: 450px;
+    height: auto;
+    display: block;
+  }
+  .funcionario:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .funcionario {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .funcionario:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+  }
+}
+
+.funcionario:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+}
+
+.funcionario h5{
+    color: #016eb3;  /*azul*/
+    padding: 0 5px;
+    font-size: 17px;
+    font: "Arial Narrow", Gadget, sans-serif;
+}
+
+.funcionario p{
+    padding: 0 5px;
+}
+
+.fotoFuncionario img{
+    width: 100%;
+    height: auto;
+}
+/*fim experimental*/
+
+/*corpo equipe responsivo*/
+@media only screen and (max-width: 700px) {
+    .textoEquipe {
+        width: 49.99999%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .textoEquipe {
+        width: 100%;
+    }
+}
+/*Fim corpo equipe responsivo*/
+
+.selecioneAno{
+    align-self: center;
+    margin: 10px 45%;
+}
+
+.dropdown ul{
+    top: 0 !important;
+    margin: 45px 45% !important;
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+
+.resposta{
+    margin: 2% 8%;
+    width: 84%;
+    height: 45vh;
+    font-family: cursive;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+#lista{
+    column-width: 160px;
+    font-family: Arial, Helveltica, sans-serif;
+    margin-left: -25px;
+}
+
+/*para a tela modal de apresentação das leis*/
+#fundo {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 1400px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#fundo span{
+    color:white;
+    top: 0;
+    margin-left: calc(100% - 70px);
+    font-size: 50px;
+    z-index: 3;
+    position: absolute;
+}
+
+.lei{
+    position: inherit;
+    padding: 1vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+.lei img{
+    max-height: 1200px;
+    width: 100%;
+}
+.lei figcaption{
+    font-size: 25px;
+    font-family: Arial, Helveltica, sans-serif;
+    color: #016eb3;  /*azul*/
+    text-align: center;
+    background-color: white;
+}
+
+.linkEsquerdo{
+    font-size: 50px;
+    color: white;
+    float: left !important;
+    top:50% !important;
+    left: 15%;
+    position: absolute !important;
+    z-index: 3 !important;
+    
+}
+.linkEsquerdo :hover, .linkDireito:hover{
+    color: #cccccc !important;
+    text-decoration: none !important;
+}
+
+.linkDireito{
+    font-size: 50px;
+    color: white;
+    float: right !important;
+    top:50%;
+    left: 82%;
+    position: absolute !important;
+    z-index: 3 !important;
+}
+
+#baixar{
+    color: white;
+    font-size: 25px;
+    margin-top: 21px;
+    margin-left: calc(100% - 130px);
+    position: absolute;
+    z-index: 4;
+}
+/*fim modal*/

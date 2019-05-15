@@ -1,0 +1,360 @@
+/*
+#f8c92e //amarelo
+#006eb4 //azul
+*/
+.rodateto{
+    width: 100%;
+    min-height: 58px;
+    background-color: #006eb4;
+    color: black;
+    font-family: Arial Narrow, Arial !important;
+}
+.switchAmarelo{
+    background-color: #f8c92e;
+    position: absolute;
+    cursor: default;
+}
+.formularioLogin{
+    display: none;
+    padding: 0 !important;
+    margin: 0 10% 0 0!important;
+    float: right;
+    width: auto !important;
+    height: 58px !important;
+    background-color: inherit !important;
+    box-shadow: none;
+    -moz-transition: visibility 1s;
+    -webkit-transition: visibility 1s;
+    transition: visibility 1s;
+}
+.formularioLogin span{
+    margin-left: 0 !important;
+}
+.formularioLogin input{
+    height: 30px !important;
+    width: 100px;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .formularioLogin:not(:first-child) {visibility: hidden;}
+  .formularioLogin form:not(:first-child) {visibility: hidden;}
+  .formularioLogin label {visibility: hidden;}
+  .formularioLogin span:not(:first-child) {visibility: hidden;}
+  .formularioLogin input:not(:first-child) {visibility: hidden;}
+  .formularioLogin button:not(:first-child) {visibility: hidden;}
+}
+/*
+@media screen and (max-width: 400px) {
+  .formularioLogin{display: block;}
+  .formularioLogin form{display: block;}
+  .formularioLogin label{display: block;}
+  .formularioLogin span{display: block;}
+  .formularioLogin input{display: block;}
+  .formularioLogin button{display: block;}
+}
+*/
+.rodateto span{
+    height: 100%;
+    margin-left: 80%;
+    font-size: 15px;
+    color: white;
+}
+
+.rodateto button{
+    height: 100%;
+    width: auto !important;
+    background-color: #f8c92e;
+    border-radius: 0;
+    border: 0;
+    height: 58px;
+    color: #006eb4;
+    position: relative;
+    /*bottom: 7px;*/
+}
+
+/*Para o inserir e o editar*/
+form{
+    background-color: white;
+    box-shadow: 2px 2px 2px #555;
+    margin: 2% 18%;
+    padding: 5%;
+}
+span[class=label], h1{
+    font-weight: normal !important;
+    font-size: 20px;
+    font-family: Arial Narrow, Arial !important;
+    color: black;
+}
+h1{
+    color: #006eb4 !important;
+    text-align: center;
+    font-size: 30px;
+}
+.aviso{
+    color: red; font-size: 15px;
+}
+form input, form button[class=browse]{
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+}
+.browse{border-radius: 5px 0 0 5px !important;}
+textArea{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+input[type=text], textArea{
+    border: 1px #666 solid;
+}
+input[type=text], textArea, .input-group-btn{
+    box-shadow: 2px 2px 2px #555;
+}
+
+.form-group{
+    position: relative;
+    height: 50px;
+}
+#colocaImagem{
+    height: 15px;
+    width: 13px;
+    margin-left: 5px;
+}
+.btn.btn-primary {
+    background-color: #006eb4;
+    border-color: #006eb4;
+    outline: none;
+    &:hover {
+        background-color: darken(#006eb4, 10%);
+        border-color: darken(#006eb4, 10%);
+    }
+    &:active, &:focus {
+        background-color: lighten(#006eb4, 5%);
+        border-color: lighten(#006eb4, 5%);
+    }
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+/*Checkbox*/
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px !important;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #f8c92e;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/*Fim checkbox*/
+
+/*Fim inserir e editar*/
+/*Tabela painel de notícias*/
+table {
+    width: 100%;
+    border: 1px solid #ddd;
+    color: white;
+    font-size: 16px;
+    font-family: Arial, Helveltica, sans-serif;
+}
+thead, tfoot{
+    width: 100%;
+    background-color: #016eb3;
+    font-size: 20px;
+}
+tfoot{height: 30px;}
+tr{
+    min-width: auto;
+    cursor: pointer;
+}
+th, td {
+    text-align: left;
+    padding: 2px !important;
+}
+thead i{
+    margin-right: 5px;
+}
+thead span:hover{
+    color: #f8c92e;
+    cursor: pointer;
+}
+tbody tr:nth-child(even){
+    background-color: #218ec3;
+    color: white;
+}
+tbody tr:nth-child(even) td:hover{
+    color: #f8c92e;
+}
+tbody tr:nth-child(odd){
+    background-color: white;
+    color: black;
+}
+tbody tr:nth-child(odd) td:hover{
+    color: #888;
+}
+/*Para o modal da notícia*/
+#modalNoticia{
+    z-index: 1;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 8%;
+    display: none;
+}
+#modalNoticia span{
+    color:white;
+    top: 0;
+    margin-left: calc(90% - 70px);
+    font-size: 50px;
+    z-index: 3;
+    position: absolute;
+    cursor: pointer;
+}
+#modalNoticia article{
+    background-color: white;
+    padding: 5%;
+    font-size: 15px;
+    font-family: Arial Narrow, sans-serif;
+}
+#modalNoticia article h1{
+    text-align: center;
+}
+#modalNoticia article figure{align-self: center;}
+/*Fim modal*/
+/*para o balão de excluir notícia*/
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: Arial, Helveltica, sans-serif;
+    font-size: 15px !important;
+}
+
+.tooltiptext:after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltiptext button{
+    height: 30px !important;
+    width: 60px !important;
+}
+
+.lixeira:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+/*Fim balão*/
+/*Para o editor de texto*/
+.note-toolbar{
+    background-color: #006eb4 !important;
+    min-height: 90px !important;
+    height: auto !important;
+}
+
+.note-btn-group{
+    float: left !important;
+}
+
+.note-editing-area{
+    width: 100% !important;
+    text-align: start !important;
+}
+/*Fium editor de texto*/
