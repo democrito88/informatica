@@ -1,0 +1,204 @@
+Requisitos para intalação
+
+Ubunto 16 ou superior 
+Apache 2 
+PHP 7.1
+Mysql 5.7
+Git
+
+Instalação do apache 
+
+sudo Apt-get install apache2
+
+Permitir reescrita no Apache2
+
+sudo a2enmod rewrite env
+
+Permissão no apcahe 2 :
+
+sudo chmod -R 777 /etc/apache2/
+
+----------------------------------
+
+Instalar PHP 7.1
+
+sudo apt install software-properties-common python-software-properties ( Algumas versões do linux não requer este passo )
+sudo apt-add-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.1 php7.1-mysql php7.1-curl php7.1-zip php7.1-intl php7.1-xml php7.1-mbstring php-gettext
+
+Permissão PHP
+
+sudo chmod -R 777 /etc/php/
+
+---------------------------------------
+Instalando Git
+
+sudo apt-get install git
+------------------------------------
+
+
+Instalando Composer
+
+sudo apt-get install curl
+curl -fSL https://getcomposer.org/composer.phar -o composer.phar ( baixar o coposer )
+sudo chmod +X composer.phar ( Tornar o composer execultavel )
+* Baixando ( composer-setup.php )
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+
+Obs01:( https://getcomposer.org/download/ ) - Buscar caso versão mais nova .
+
+php composer-setup.php
+php composer-setup.php --filename=composer ( altere o nome de composer.phar para composer )
+
+Baixando Projeto 
+
+git clone https://github.com/novosga/novosga.git novosga2 ( o download vai para pasta de usuario ex: /home/seuusuario )
+
+quando concluir o download copie o composer para a pasta novo sga :
+
+sudo mv composer /home/seuusuario/novosga2
+
+* dento da pasta novosga2 use o comando *
+
+php composer create-project "novosga/novosga:^2.0" novosga
+
+espere a instalação de todas depêndencias
+
+perceba que vai criar uma pasta com nome sga esta pasta que será nossa pasta de trabalho
+
+
+Instalar MySQL 5.7
+
+sudo apt-get update
+sudo apt-get install mysql-server * guarda a senha que e pedida do root*
+
+logue como root, e no promp mysql digite: ( sudo mysql -u root -p ) 
+use mysql;
+update user set password=password('') where user='root'; ( desabilitar senha do root , passo essecial para instalação do sga mas na frente )
+flush privileges; 
+quit
+
+
+Apos desabilitar a senha do root
+
+sudo mysql -u root
+
+CREATE DATABASE novosga; > em preferência esta database para não geral conflito de criação.
+
+Criar usuário:
+
+>CREATE USER 'novosga'@'localhost' IDENTIFIED BY '123456';
+
+
+Garantir privilégio do usuário ao banco de dados:
+
+
+>GRANT ALL PRIVILEGES ON novosga.* TO 'novosga'@'localhost' IDENTIFIED BY '123456';
+
+>FLUSH PRIVILEGES;
+>exit;
+
+Mover o SGA para raiz do Apache ( Documente Root ) - ( no caso so funcionou no Html )
+ 
+sudo mv ~/novosga /var/www/html
+
+Comandos para depois de mover a pasta 
+
+sudo /var/www/html/novosga/bin/console cache:clear --no-debug --no-warmup --env=prod
+sudo /var/www/html/novosga/bin/console cache:warmup --env=prod
+
+quando você usar o 2 comando , se der ester erro "Aqui deu o erro de pt_BR locale, é só dar o comando abaixo no terminal" prosseguir com comando abaiso no terminal:
+
+sudo export LANGUAGE=pt_BR
+
+e repetir o comando (sudo /var/www/html/novosga/bin/console cache:warmup --env=prod) 
+
+Permissões para a pasta ( no nosso caso novosga )
+
+sudo chown www-data:www-data -R /var/www/novosga
+sudo chmod +w -R /var/www/novosga/var/
+
+Alterar diretório e habilitar o .htaccess ( vamos por o virtualhost como na documentação  )
+
+
+sudo nano /etc/apache2/sites-available/000-default.conf
+
+
+<VirtualHost *:80>
+        ServerName localhost
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html/novosga/public
+<Directory /var/www/html/novosga/public>
+        AllowOverride
+</Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+Depois use :
+
+sudo systemctl restart apache2
+
+Usar o nossa configuração alterada 
+
+sudo a2dissite 000-default
+
+sudo systemctl restart apache2
+
+Craindo o .htaccess
+
+atenção o comando para criar seria o  - sudo nano /var/www/html/novosga/public/.htaccess
+
+no meu caso um erro não deixava eu criar então fiz :
+
+sudo nano /home/seuusuario/.htaccess
+
+ 
+
+# echo 'Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+SetEnv APP_ENV prod
+SetEnv LANGUAGE pt_BR
+SetEnv DATABASE_URL mysql://novosga:123456@localhost:3306/novosga
+
+salva o arquivo e depois segue estes passo 
+
+sudo mv /home/seuusuario/.htaccess /var/www/html/novosga/public/.htaccess
+
+sudo service apache2 restart
+
+Instalação Final 
+
+# APP_ENV=prod \
+    LANGUAGE=pt_BR \
+    DATABASE_URL="mysql://novosga:123456@localhost:3306/novosga"
+    /var/www/html/novosga/bin/console novosga:install
+
+Obs: este comando tem quer ser colado no terminal e execultado
+obs2: reparem que a url mysql e identica a que esta no .htaccess
+
+apos todos estes passo agora sim você pode acessar seu sistema pela url 
+
+http://localhost/novosga/public/ ou http://"ipdoservidor"/novosga/public
+
+ultima observação depois de todos os passo ultilizar o seguinte comando 
+
+sudo mysql_secure_installation
+
+Change the root password? ( ativar a senha do root do mysql )
+
+
+Referencias 
+
+https://discuss.novosga.org/d/58-tutorial-instala-o-novo-sga-v2-0
+https://github.com/novosga/novosga
+https://getcomposer.org/download/
+http://www.diegobrocanelli.com.br/mysql/comandos-basicos-mysql-no-terminal/
+https://www.digitalocean.com/community/tutorials/como-instalar-a-pilha-linux-apache-mysql-php-lamp-no-ubuntu-18-04-pt
+http://phpbrasil.com/phorum/read.php?1,5969
+https://mariadb.com/kb/en/library/mysql_secure_installation/
+

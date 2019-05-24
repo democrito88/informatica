@@ -1,0 +1,259 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Tutorial de instalação no novo SGA v.2.0.7</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            .prompt{
+                background-color: black;
+                color: white;
+                padding: 8px;
+            }
+            header{
+                background-color: #ff6633 !important;
+                color: white !important;
+            }
+            footer {
+                position: relative;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #ff6633;
+                color: white;
+                text-align: center;
+             }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <header class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1>Como instalar o Novo SGA v.2.0.7</h1>
+                <h4>Tutorial completo que funciona!</h4>
+            </div>
+            
+        </header>
+        <section class="container">
+            <h3>Requisitos para instalação</h3>
+            <ul>
+                <li>Ubuntu 16.04 ou superior</li>
+                <li>Apache 2</li>
+                <li>PHP 7.1</li>
+                <li>Mysql 5.7</li>
+                <li>Git</li>
+            </ul>
+            <hr>
+            
+            <h3>Instalação do apache</h3>
+            <code>sudo apt-get install apache2</code><br><br>
+            <p>Permitir reescrita no Apache2</p>
+            <code>sudo a2enmod rewrite env</code><br><br>
+            <p>Permissão no apcahe 2 :</p>
+            <code>sudo chmod -R 777 /etc/apache2/</code><br><br>
+            <hr>
+            
+            <h3>Instalando PHP 7.1</h3>
+            <p>Algumas versões do linux não requerem este passo:</p>
+            <code>sudo apt install software-properties-common python-software-properties</code><br><br>
+            
+            <p>Se não, você pode simplesmente usar:</p>
+            <code>sudo apt-add-repository ppa:ondrej/php
+            sudo apt-get update
+            sudo apt-get install php7.1 php7.1-mysql php7.1-curl php7.1-zip php7.1-intl php7.1-xml php7.1-mbstring php-gettext</code><br><br>
+            <p>Permissão PHP</p>
+            <code>sudo chmod -R 777 /etc/php/</code><br><br>
+            <hr>
+            <h3>Instalando Git</h3>
+            <code>sudo apt-get install git</code><br><br>
+            <hr>
+            <h3>Instalando o Curl</h3>
+            <code>sudo apt-get install curl</code><br><br>
+            <hr>
+            
+            <h3>Baixando o composer</h3>
+            
+            <code>curl -fSL https://getcomposer.org/composer.phar -o composer.phar</code><br><br>
+            <p>Torne o composer executável</p>
+            <code>sudo chmod +X composer.phar</code><br><br>
+            <p>Baixando <i>composer-setup.php</i></p>
+            <code>php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"</code><br>
+            <code>php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"</code><br><br>
+            <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow">
+                <strong>Observação</strong>
+                <p><a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a> - Buscar a versão mais nova </p>
+            </div><br><br>
+            
+            <code>php composer-setup.php</code><br><br>
+            <p>Altere o nome de composer.phar para composer</p>
+            <code>php composer-setup.php --filename=composer</code><br><br>
+            <hr>
+
+            <h3>Baixando Projeto</h3>
+
+            <p>Baixe o projeto usand o <i>git</i>. O download vai para pasta de usuario. Ex: <strong>/home/seuusuario</strong></p>
+            <code>git clone https://github.com/novosga/novosga.git novosga2</code><br><br>
+            <p>quando concluir o download copie o composer para a pasta novo sga :</p>
+            <code>sudo mv composer /home/seuusuario/novosga2</code><br><br>
+            <p>Dentro da pasta novosga2 use o comando:</p>
+            <code>php composer create-project "novosga/novosga:^2.0" novosga</code><br><br>
+            <p>Espere a instalação de todas depêndencias. Perceba que vai criar uma pasta com nome sga. Esta será nossa pasta de trabalho.</p>
+            <hr>
+            
+            <h3>Instalando e configurando o MySQL 5.7</h3>
+            
+            <p>Execute os seguintes comandos. Você será levado ao menu de instalação do mysql. Entre outras coisas, você poderá configurar a senha do usuário <i>root</i>.</p>
+            <div class="w3-panel w3-leftbar w3-border-red w3-pale-red">
+                <strong style="color: red;">Memorize a senha do usuário <i>root</i>!</strong>
+            </div><br>
+            
+            <code>sudo apt-get update</code><br>
+            <code>sudo apt-get install mysql-server</code><br><br>
+            <p>Após a instalação, faça login no mysql como root</p>
+            <code>sudo mysql -u root -p</code><br><br>
+            <p>No prompt mysql digite:</p>
+            <code>use mysql;</code><br><br>
+            <p>Desabilite senha do <i>root</i>. Isto é essecial para instalação do sga mais na frente</p>
+            <code>update user set password=password('') where user='root';</code><br>
+            <code>flush privileges;</code><br>
+            <code>quit</code><br><br>
+            <p>Após desabilitar a senha do root, faça login novamente. Você perceberá que o mysql não vai mais requisitar uma senha.</p>
+            <code>sudo mysql -u root</code><br><br>
+            <p>Crie uma base de dados com o nome <strong>novosga</strong>. Mais na frente o sistema precisará de uma base com este exato nome.</p>
+            <code>CREATE DATABASE novosga;</code><br><br>
+            <p>Crie um usuário mysql e uma senha para poder usar a base de dados</p>
+            <code>CREATE USER 'novosga'@'localhost' IDENTIFIED BY '123456';</code><br><br>
+            <p>Garanta privilégio do usuário ao banco de dados:</p>
+            <code>GRANT ALL PRIVILEGES ON novosga.* TO 'novosga'@'localhost' IDENTIFIED BY '123456';</code><br>
+            <code>FLUSH PRIVILEGES;</code><br>
+            <code>exit;</code><br><br>
+            <hr>
+            
+            <h3>Configurando o Apache</h3>
+            <p>Verifique qual diretório está configurado para ser a raiz do apache. Isso pode ser checado no arquivo <i>/etc/apache2/apache.conf</i>. Por padrão, o diretório raiz é o <i>/var/www/html</i></p>
+            <p>Você pode verificar, por exemplo, com o comando:</p>
+            <code>sudo nano /etc/apache2/apache.conf</code><br><br>
+            <p>Procure algo no documento como:</p>
+            <span style="background-color: black; color: white;">&nbsp;&nbsp;Document Root /var/www/html&nbsp;&nbsp;</span><br>
+            <p>Mova o SGA para o diretório raiz do Apache ( Documente Root )</p>
+            <code>sudo mv ~/novosga /var/www/html</code><br><br>
+            <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow">
+                <strong>Observação</strong>
+                <p>Em nossa experiência, só obtivemos sucesso quando a raiz do apache era a padrão.</p>
+            </div><br>
+            <hr>
+            
+            <h3>Configurando o sistema</h3>
+            <p>Limpe o cache e deixe o sistema quase pronto para execução.</p> 
+            <code>sudo /var/www/html/novosga/bin/console cache:clear --no-debug --no-warmup --env=prod</code><br>
+            <code>sudo /var/www/html/novosga/bin/console cache:warmup --env=prod</code><br><br>
+            <p>Se após o segundo comando aparecer uma mensagem de erro de linguagem, configure-a assim:</p>
+            <code>sudo export LANGUAGE=pt_BR</code><br><br>
+            <p>e repetir o comando anterior</p>
+            
+            <p>Dê permissões para a pasta do sistema</p>
+
+            <code>sudo chown www-data:www-data -R /var/www/html/novosga</code><br>
+            <code>sudo chmod +w -R /var/www/html/novosga/var/</code><br><br>
+
+            <p>Altere o arquivo de host virtual no diretório do apache</p>
+            <code>sudo nano /etc/apache2/sites-available/000-default.conf</code><br><br>
+            
+            <div class="prompt">
+                &lt;VirtualHost *:80&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;ServerName localhost<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;ServerAdmin webmaster@localhost<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;DocumentRoot /var/www/html/novosga/public<br>
+                &lt;Directory /var/www/html/novosga/public&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;AllowOverride<br>
+                &lt;/Directory&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;ErrorLog ${APACHE_LOG_DIR}/error.log<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
+                &lt;/VirtualHost&gt;<br>
+            </div><br>
+            <p>Reinicie o apache</p>
+            <code>sudo systemctl restart apache2</code><br><br>
+            <p>Habilite o host virtual modificado e reinicie o apache novamente.</p>
+            <code>sudo a2dissite 000-default</code>
+            <code>sudo systemctl restart apache2</code><br><br>
+            <hr>
+            
+            <h3>Criando o .htaccess</h3>
+            <p>Crie um arquivo .htaccess no diretório <i>public</i> dentro da pasta do sistema.</p>
+            <code>sudo nano /var/www/html/novosga/public/.htaccess</code><br><br>
+            <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow">
+                <strong>Observação</strong>
+                <p>Em nossa experiência, não conseguimos criar este arquivo assim.</p>
+                <p>Criamos um arquivo no diretório do usuário e o movemos para a pasta <i>public</i></p>
+                <code>sudo nano /home/seuusuario/.htaccess</code><br>
+                <code>sudo mv /home/seuusuario/.htaccess /var/www/html/novosga/public/.htaccess</code><br>
+            </div><br>
+            <p>Ao abrir o arquivo com um editor de texto, escreva o seguinte código dentro dele:</p>
+            <div class="prompt">
+                # echo 'Options -MultiViews
+                RewriteEngine On
+                RewriteCond %{REQUEST_FILENAME} !-f
+                RewriteRule ^(.*)$ index.php [QSA,L]
+                SetEnv APP_ENV prod
+                SetEnv LANGUAGE pt_BR
+                SetEnv DATABASE_URL mysql://novosga:123456@localhost:3306/novosga
+            </div><br>
+            <p>Reinicie mais uma vez o apache</p>
+            <code>sudo service apache2 restart</code><br>
+            <hr>
+            
+            <h3>Instalação Final</h3>
+            <p>Copie, cole este comando no seu terminal e execute:</p>
+            <code># APP_ENV=prod \
+                LANGUAGE=pt_BR \
+                DATABASE_URL="mysql://novosga:123456@localhost:3306/novosga"
+                /var/www/html/novosga/bin/console novosga:install</code>
+
+            <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow">
+                <strong>Observação</strong>
+                <p>A configuração de usuário, senha, local do banco e porta deve estar idêntica a do arquivo <i>.htaccess</i></p>
+                <p>No nosso caso, usamos <i>mysql://novosga:123456@localhost:3306/novosga</i></p>
+            </div><br>
+
+            <p>Após todos estes passos, finalmente você pode acessar seu sistema pela url:</p>
+            <div class="w3-panel w3-leftbar w3-border-green w3-pale-green">
+                <p>http://localhost/novosga/public/</p>
+                <p>ou</p>
+                <p>http://"ipdoservidor"/novosga/public</p>
+            </div><br>
+            <p>Antes de finalizar, ultilize o seguinte comando</p>
+            <code>sudo mysql_secure_installation</code><br><br>
+            <p>E ative a senha do usuário <i>root</i> do mysql por questão de segurança</p>
+            <div class="prompt">
+                Change the root password?
+            </div>
+            <hr>
+            
+            <h3>Referências</h3>
+            <ul>
+                <li><a href="https://discuss.novosga.org/d/58-tutorial-instala-o-novo-sga-v2-0">https://discuss.novosga.org/d/58-tutorial-instala-o-novo-sga-v2-0</a></li>
+                <li><a href="https://github.com/novosga/novosga">https://github.com/novosga/novosga</a></li>
+                <li><a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a></li>
+                <li><a href="http://www.diegobrocanelli.com.br/mysql/comandos-basicos-mysql-no-terminal/">http://www.diegobrocanelli.com.br/mysql/comandos-basicos-mysql-no-terminal/</a></li>
+                <li><a href="https://www.digitalocean.com/community/tutorials/como-instalar-a-pilha-linux-apache-mysql-php-lamp-no-ubuntu-18-04-pt">https://www.digitalocean.com/community/tutorials/como-instalar-a-pilha-linux-apache-mysql-php-lamp-no-ubuntu-18-04-pt</a></li>
+                <li><a href="http://phpbrasil.com/phorum/read.php?1,5969">http://phpbrasil.com/phorum/read.php?1,5969</a></li>
+                <li><a href="https://mariadb.com/kb/en/library/mysql_secure_installation/">https://mariadb.com/kb/en/library/mysql_secure_installation/</a></li>
+            </ul>
+        </section>
+        <footer>
+            <p>Tutorial de instalação no novo SGA v.2.0.7</p>
+            <p>Autor: Ganjaboy</p>
+        </footer>
+    </body>
+</html>
