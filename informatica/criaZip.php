@@ -13,7 +13,7 @@ $flag = strpos($numero, $findme);
 if($flag === true){
     throw new Exception("<h4>Parâmetro inválido</h4>");
 }else{
-    $conn = mysqli_connect("localhost", "root", "", "intranet");
+    $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
     $query = "SELECT foto FROM usuarios WHERE numero = ".$numero." ORDER BY id";
     $fotos = mysqli_query($conn, $query);
     if(is_null($fotos) || is_bool($fotos)){

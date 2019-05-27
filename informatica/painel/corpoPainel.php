@@ -1,5 +1,8 @@
 <?php
+session_start();
+include_once 'verificaLogin.php';
 function cabecalhoPainel(){
+    verificaLogin();
 ?>        
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,7 +35,7 @@ function cabecalhoPainel(){
     <body>
 <header>
     <div class="rodateto">
-        <span>Bem vindo!</span> <button class="btn btn-warning" onclick="sair();">Sair</button>
+        <span>Bem vindo, <?php echo $_SESSION['login'];?>!</span> <button class="btn btn-warning" onclick="sair();">Sair</button>
     </div>
 </header>
 <?php 

@@ -1,5 +1,5 @@
 function sair(){
-    window.location = "../";
+    window.location = "logout.php";
 }
 
 //Para ativar ou desativar a opção de subir uma imagem
