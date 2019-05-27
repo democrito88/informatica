@@ -1,5 +1,5 @@
 <?php
-
+include_once './util/connection.php';
 if(is_null($_GET['numero'])){
     throw new Exception("<h4>Parâmetro não configurado</h4>");
 }
@@ -13,9 +13,10 @@ $flag = strpos($numero, $findme);
 if($flag === true){
     throw new Exception("<h4>Parâmetro inválido</h4>");
 }else{
-    $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
-    $query = "SELECT foto FROM usuarios WHERE numero = ".$numero." ORDER BY id";
+    $conn = conecta();
+    $query = "SELECT foto FROM leis WHERE numero = ".$numero." ORDER BY id";
     $fotos = mysqli_query($conn, $query);
+    desconecta($conn);
     if(is_null($fotos) || is_bool($fotos)){
         echo "ERROR";
     }

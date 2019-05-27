@@ -1,9 +1,11 @@
 <?php
 include './Corpo.php';
+include_once './util/connection.php';
 
-$conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
+$conn = conecta();
 $query = "SELECT * FROM noticias ORDER BY id DESC";
 $sql = mysqli_query($conn, $query);
+desconecta($conn);
 if(is_null($sql) || is_bool($sql)){
     echo "<h1>ERROR</h1>";
 }

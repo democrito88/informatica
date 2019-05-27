@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php $numero = 0;?>
+<?php
+include_once './util/connection.php';
+$numero = 0;?>
 <html>
 <head>
     <link rel="stylesheet" href="css/stylle.css" />
@@ -16,8 +18,9 @@ $pos = strpos($ano, $findme);
 if ($pos === false) {
     // Seleciona todos os usuários
     if(!is_null($ano)){
-        $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
-        $sql = mysqli_query($conn, "SELECT IF(COUNT(id) > 1, 'true', 'false') AS flag, COUNT(id) AS paginas, ano, numero FROM usuarios WHERE ano = ".$ano." GROUP BY numero");
+        $conn = conecta();
+        $sql = mysqli_query($conn, "SELECT IF(COUNT(id) > 1, 'true', 'false') AS flag, COUNT(id) AS paginas, ano, numero FROM leis WHERE ano = ".$ano." GROUP BY numero");
+        desconecta($conn);
         if(is_null($sql) || !$sql){
             echo 'Falha na consulta.';
         }else{
@@ -80,9 +83,10 @@ if ($pos === false) {
 </html>
 <?php
 function retornaArrayPaginas($numero){
-    $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
-    $query = "SELECT id, foto FROM usuarios WHERE numero = ".$numero." ORDER BY id";
+    $conn = conecta();
+    $query = "SELECT id, foto FROM leis WHERE numero = ".$numero." ORDER BY id";
     $sql = mysqli_query($conn, $query);
+    desconecta($conn);
     if(is_null($sql) || is_bool($sql)){
         return "ERROR";
     }

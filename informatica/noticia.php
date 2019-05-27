@@ -1,5 +1,6 @@
 <?php
 include './Corpo.php';
+include_once './util/connection.php';
 
 if(is_null($_GET['id'])){
     throw new Exception("<h4>Parâmetros não configurados</h4>");
@@ -14,9 +15,10 @@ if($flag === true){
     throw new Exception("<h4>Parâmetros inválidos</h4>");
 }else{
     
-$conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
+$conn = conecta();
 $query = "SELECT * FROM noticias WHERE id = ".$id;
 $sql = mysqli_query($conn, $query);
+desconecta($conn);
 if(is_null($sql) || is_bool($sql)){
     echo "<h1>ERROR</h1>";
 }

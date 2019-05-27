@@ -1,5 +1,7 @@
 <?php
 include './corpoPainel.php';
+include_once '../util/connection.php';
+
 cabecalhoPainel();
 
 if( !is_null($_GET['id']) ){
@@ -8,9 +10,10 @@ if( !is_null($_GET['id']) ){
     throw new Exception("id não cofigurado corretamente.");
 }
 
-$conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
+$conn = conecta();
 $query = "SELECT * FROM noticias WHERE id = ".$id;
 $sql = mysqli_query($conn, $query);
+desconecta($conn);
 mysqli_close($conn);
 
 ?>

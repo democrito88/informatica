@@ -1,10 +1,13 @@
 <?php
 include './corpoPainel.php';
+include_once '../util/connection.php';
+
 cabecalhoPainel();
 
-$conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
+$conn = conecta();
 $query = "SELECT * FROM noticias ORDER BY id";
 $sql = mysqli_query($conn, $query);
+desconecta($conn);
 ?>
 <script>
 function mostraNoticia(id) {

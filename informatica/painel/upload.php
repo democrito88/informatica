@@ -1,4 +1,6 @@
 <?php
+include_once '../util/connection.php';
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $titulo = utf8_decode($_POST['titulo']);
     $texto = utf8_decode($_POST['editordata']);
@@ -68,15 +70,10 @@ if($temImagem && isset($_FILES["imagem"]["name"])){
 
 try{
     if($uploadOk == 1){
-        $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
-        // Check connection
-        if (mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-
+        $conn = conecta();
         $query = "INSERT INTO `noticias`(`titulo`, `texto`, `caminho`, `subtitulo`, `publicado`) VALUES ('".$titulo."','".$texto."','".$caminho."','".$subtitulo."','".$publicado."')";
         mysqli_query($conn, $query);
-        mysqli_close($conn);
+        desconecta($conn);
         header("Location: http://informatica.olinda.pe.gov.br/informatica/painel/painelDeNoticias.php");
     }else{
         header("Location: http://informatica.olinda.pe.gov.br/informatica/painel/novaNoticia.php?m=".$menssagem);

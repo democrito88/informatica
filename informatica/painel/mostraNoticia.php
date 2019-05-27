@@ -1,4 +1,6 @@
 <?php
+include_once '../util/connection.php';
+
 if(isset($_GET['id'])){
     $id = intval($_GET['id']);
 
@@ -9,9 +11,10 @@ if(isset($_GET['id'])){
     if($flag === true){
         throw new Exception("<h4>Parâmetros inválidos</h4>");
     }else{
-        $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
+        $conn = conecta();
         $query = "SELECT * FROM noticias WHERE `id` = ".$id." LIMIT 1";
         $sql = mysqli_query($conn, $query);
+        desconecta($conn);
         if(is_null($sql) || is_bool($sql)){
             echo "ERROR";
         }else{

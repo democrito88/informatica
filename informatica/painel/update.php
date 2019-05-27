@@ -1,4 +1,6 @@
 <?php
+include_once '../util/connection.php';
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $titulo = utf8_decode($_POST['titulo']);
     $texto = utf8_decode($_POST['editordata']);
@@ -48,10 +50,10 @@ if($temImagem && isset($_FILES["imagem"]["name"]) && $_FILES["imagem"]["name"] !
         //Checa se a imagem passada já era a imagem que estava antes na notícia
         $jaEraAAnterior = false;
         $caminhoDaAnterior = "";
-        $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
+        $conn = conecta();
         $query = "SELECT `caminho` FROM noticias WHERE id='".$id."'";
         $sql = mysqli_query($conn, $query);
-        mysqli_close($conn);
+        desconecta($conn);
         while($noticia = mysqli_fetch_assoc($sql)){
             $caminhoDaAnterior = $noticia['caminho'];
             if($noticia['caminho'] == $caminho){
@@ -80,15 +82,11 @@ if($temImagem && isset($_FILES["imagem"]["name"]) && $_FILES["imagem"]["name"] !
 
 //Insere no banco
 if($updateOk == 1){
-    $conn = mysqli_connect("localhost", "root", "B@nc0NEW", "intranet");
-    // Check connection
-    if (mysqli_connect_errno()){
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    }
+    $conn = conecta();
 
     $query = "UPDATE `noticias` SET `titulo`='".$titulo."',`texto`='".$texto."',`caminho`='".$caminho."',`subtitulo`='".$subtitulo."', `publicado`=".$publicado." WHERE `id` = ".$id;
     mysqli_query($conn, $query);
-    mysqli_close($conn);
+    desconecta($conn);
     header("Location: http://informatica.olinda.pe.gov.br/informatica/painel/painelDeNoticias.php");
 }else{
     header("Location: http://informatica.olinda.pe.gov.br/informatica/painel/editaNoticia.php?id=".$id."&m=".$mensagem);
