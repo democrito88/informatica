@@ -30,7 +30,7 @@ function mostrar(){
 <body onload="mostraSlides(1);">
 <div class="rodateto">
     <button class="switchAmarelo" onclick="mostrar();"></button>
-    <form class="formularioLogin" name="entrar" action="painel/login.php" method="POST">
+    <form class="formularioLogin" name="entrar" action="util/login.php" method="POST">
         <label><span>Login:&nbsp;</span><input type="text" name="login"></label>
         <label><span>Senha:&nbsp;</span><input type="password" name="senha"></label>&nbsp;
         <button type="submit">Entrar</button>
@@ -94,8 +94,7 @@ function mostrar(){
                 </ul>
             </li>
         </ul>
-    </div><span>|</span>
-    <a href="../glpi">Área Restrita</a>
+    </div>
     <a style="font-size:15px;" class="icon" onclick="menuResponsivo();">&#9776;</a>
 </nav>
 </header>
@@ -105,7 +104,7 @@ function mostrar(){
 function rodape(){
     ?><footer> 
         <div class="floater01">
-            <p class="textoRodape" style="margin-bottom:-3px;">Versão 2.0 © 2017-2018 - Todos Direitos Resevados  - Prefeitura de Olinda - <b>www.informatica.olinda.pe.gov.br</b></p>
+            <p class="textoRodape" style="margin-bottom:-3px;">Versão 2.1 - Todos Direitos Resevados  - Prefeitura de Olinda - <b>www.informatica.olinda.pe.gov.br</b></p>
         </div>
         <div class="floater02">
             <div class="contato">

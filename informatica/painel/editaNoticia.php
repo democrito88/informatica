@@ -14,7 +14,6 @@ $conn = conecta();
 $query = "SELECT * FROM noticias WHERE id = ".$id;
 $sql = mysqli_query($conn, $query);
 desconecta($conn);
-mysqli_close($conn);
 
 ?>
 <script>

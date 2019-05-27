@@ -35,7 +35,7 @@ function cabecalhoPainel(){
     <body>
 <header>
     <div class="rodateto">
-        <span>Bem vindo, <?php echo $_SESSION['login'];?>!</span> <button class="btn btn-warning" onclick="sair();">Sair</button>
+        <span>Bem vindo, <?php echo $_SESSION['nome'];?>!</span> <button class="btn btn-warning" onclick="sair();">Sair</button>
     </div>
 </header>
 <?php 
